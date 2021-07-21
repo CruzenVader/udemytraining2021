@@ -1,5 +1,7 @@
+require_relative 'crud'
 # Student class
 class Student
+  include Crud
   attr_accessor :first_name, :last_name, :email, :username, :password
 
   def initialize(firstname, lastname, email, username, password)
@@ -21,8 +23,7 @@ nathan = Student.new('Nathan', 'Taylor', 'nathan@email.com',
                      'nathant', 'password1')
 john = Student.new('John', 'Smith', 'john@email.com',
                      'johns', 'password2')
-puts nathan
-puts john
-nathan.last_name = john.last_name
-puts 'Nathan is altered'
-puts nathan
+
+hashed_password = nathan.create_hash_digest(nathan.password)
+
+p hashed_password
